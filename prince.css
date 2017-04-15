@@ -1,0 +1,241 @@
+
+@media print
+{
+    @page
+    {
+        /* marks: crop cross; */
+        size: 6in 9in;
+        margin: 8mm 16mm 18mm 16mm;
+        margin-inside: 26mm;
+        margin-outside: 16mm;
+
+        @footnotes
+        {
+            margin:0pt;
+        }
+
+        counter-reset: footnote;
+    }
+
+    @page frontmatter :left
+    {
+        @top-left { content: normal }
+        @top-center { content: normal }
+        @top-right { content: normal }
+        @bottom-left { content: normal }
+        @bottom-center { content: normal }
+        @bottom-right { content: normal }
+    }
+
+    @page frontmatter :right
+    {
+        @top-left { content: normal }
+        @top-center { content: normal }
+        @top-right { content: normal }
+        @bottom-left { content: normal }
+        @bottom-center { content: normal }
+        @bottom-right { content: normal }
+    }
+
+    @page :left
+    {
+        @top-left { content: normal }
+        @top-right { content: normal }
+        @bottom-left
+        {
+            content: counter(page);
+            font-family: "AGaramond LT", serif;
+            font-size: 11pt;
+            margin: 0;
+        }
+        @bottom-right { content: normal }
+    }
+
+    @page :right
+    {
+
+        @top-left { content: normal }
+        @top-right { content: normal }
+        @bottom-left { content: normal }
+        @bottom-right
+        {
+            content: counter(page);
+            font-family: "AGaramond LT", serif;
+            font-size: 11pt;
+            margin: 0;
+        }
+    }
+
+    :root, body, h1, h2, h3, h4, h5, h6, .titlePage, .transcribernote, .h1, .h2, .h3, .h4
+    {
+        color: black;
+        font-family: "AGaramond LT", serif;
+        hyphens: auto;
+        hyphenate-after: 3;
+        hyphenate-before: 3;
+        prince-hyphenate-lines: 2;
+        prince-hyphenate-patterns: url(nehyph.tex);
+        prince-text-replace: "..." "\2026" "\2014" " \2013\20";  /* em-dash to space en-dash space */
+    }
+
+    body
+    {
+        font-size: 11pt;
+        margin: 0;
+		padding: 0;
+    }
+
+    /* Since we use end-notes, restore the note-markers: We make them relative to the top, as to 
+       prevent CSS from inserting more intra-line space. */
+
+    .noteref, .pseudonoteref
+    {
+        font-size: 5pt;
+        position: relative;
+        display: inline;
+        vertical-align: 0.33em;
+        line-height: none;
+    }
+
+    .displayfootnote
+    {
+        font-size: 9pt;
+        font-weight: normal;
+        font-style: normal;
+        text-indent: 1em;
+        text-align: justify;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    div.blockquote
+    {
+        font-size: 10pt;
+        margin-left: 1em;
+        margin-right: 0;
+    }
+
+
+    /* Cover */
+
+    #cover-image
+    {
+        page: coverpage;
+    }
+
+    #cover-image img
+    {
+        position: absolute;
+        height: 9in;
+        width: 6in;
+        left: 0; top: 0;
+        z-index: -1;
+    }
+
+    #cover
+    {
+        display: none;
+    }
+
+
+
+    h2.label
+    {
+        font-size: 36pt;
+    }
+
+    h2.main
+    {
+        font-size: 16pt;
+        margin-bottom: 100pt;
+    }
+
+    /* fix up a chapter titles with a footnote */
+    #ch20 h2.main
+    {
+        prince-bookmark-level: 2;
+        prince-bookmark-label: "La junta en el Tribunal";
+    }
+
+    #ch53 h2.main
+    {
+        prince-bookmark-level: 2;
+        prince-bookmark-label: "Il buon di si conosce da mattina";
+    }
+
+    /* fix up un unamed chapter */
+    #ch54 h2.label
+    {
+        margin-bottom: 100pt;
+        prince-bookmark-level: 2;
+        prince-bookmark-label: "Quidquid latet...";
+    }
+
+    #toc ul
+    {
+        margin-left: 0;
+        color: red;
+    }
+
+    p.line
+    {
+        font-style: italic;
+    }
+
+
+    /* Title page */
+
+    #booktitle
+    {
+        text-align: right;
+        font-size: 36pt;
+    }
+
+    #subtitle
+    {
+        text-align: right;
+        font-style: italic;
+        font-size: 28pt;
+    }
+
+    #byline
+    {
+        margin-top: 10cm;
+        text-align: right;
+    }
+
+    #author
+    {
+        font-size: 28pt;
+        margin-bottom: 2cm;
+    }
+
+    #docimprint
+    {
+        font-size: 12pt;
+        text-align: right;
+    }
+    
+
+    /* Copyright page */
+
+    #copyright
+    {
+        font-size: 9pt;
+        margin-top: 9cm;
+    }
+
+    #copyright p
+    {
+        text-indent: 0;
+        margin-bottom: 1em;
+    }
+
+    /* Some additional page-breaks */
+
+    div.titlePage, #epigraph, #dedication, #ch1
+    {
+        page-break-before: right;
+    }
+
+}
